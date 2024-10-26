@@ -1,0 +1,31 @@
+
+
+#Error
+Error occurred during initialization of boot layer
+java.lang.module.FindException: Module the.bb not found
+
+#Cause
+when changed module name from the.bb to thebb, got: above error
+
+#Solution
+1- a module-info.java must be created
+2- after maven-clean: the project maven-update must be executed
+3- after module rename: the run-configuration must be removed and new one issued / or the main class to be renamed 
+
+//==================================
+
+
+#Error
+Error occurred during initialization of boot layer
+java.lang.module.FindException: Module my.cc.app not found, required by the.bb
+
+#Cause
+When used workspace-project as library using properties->build path->projects->modules, above error occured
+
+#Solution
+1- make both projects java 9+ using maven-compiler-plugin
+2- remove workspace-project as library using properties->build path->projects->modules
+3- finalize/package your dependency project/s using maven-jar-plugin
+4- include the workspace-project as dependency in pom.xml file, include target module in your module-info.java file
+5- the problem should be gone
+

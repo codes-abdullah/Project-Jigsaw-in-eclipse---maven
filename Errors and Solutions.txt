@@ -29,3 +29,19 @@ When used workspace-project as library using properties->build path->projects->m
 4- include the workspace-project as dependency in pom.xml file, include target module in your module-info.java file
 5- the problem should be gone
 
+
+//==================================
+
+#Error
+Error occurred during initialization of boot layer
+java.lang.LayerInstantiationException: Class loader (instance of): 'app' tried to define prohibited package name: java.codes.abdullah.r
+
+
+#Cause
+a .java file was created under folders java/codes.abdullah/r inside resources folder causes this error to rise
+
+#Solution
+Dont use java or javax as top level folder name inside resources dir, e.g:  java/codes.abdullah/r will rise error, but this will not:  my/java/codes.abdullah/r 
+
+
+

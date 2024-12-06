@@ -1,13 +1,13 @@
 
 
-#Error
+#Error:
 Error occurred during initialization of boot layer
 java.lang.module.FindException: Module the.bb not found
 
-#Cause
+#Cause:
 when changed module name from the.bb to thebb, got: above error
 
-#Solution
+#Solutions
 1- a module-info.java must be created
 2- after maven-clean: the project maven-update must be executed
 3- after module rename: the run-configuration must be removed and new one issued / or the main class to be renamed 
@@ -15,14 +15,14 @@ when changed module name from the.bb to thebb, got: above error
 //==================================
 
 
-#Error
+#Error:
 Error occurred during initialization of boot layer
 java.lang.module.FindException: Module my.cc.app not found, required by the.bb
 
-#Cause
+#Cause:
 When used workspace-project as library using properties->build path->projects->modules, above error occured
 
-#Solution
+#Solutions:
 1- make both projects java 9+ using maven-compiler-plugin
 2- remove workspace-project as library using properties->build path->projects->modules
 3- finalize/package your dependency project/s using maven-jar-plugin
@@ -32,16 +32,29 @@ When used workspace-project as library using properties->build path->projects->m
 
 //==================================
 
-#Error
+#Error:
 Error occurred during initialization of boot layer
 java.lang.LayerInstantiationException: Class loader (instance of): 'app' tried to define prohibited package name: java.codes.abdullah.r
 
 
-#Cause
+#Cause:
 a .java file was created under folders java/codes.abdullah/r inside resources folder causes this error to rise
 
-#Solution
+#Solutions:
 Dont use java or javax as top level folder name inside resources dir, e.g:  java/codes.abdullah/r will rise error, but this will not:  my/java/codes.abdullah/r 
 
+
+//==================================
+
+#Error:
+java.lang.reflect.InaccessibleObjectException: Unable to make field private javafx.scene.layout.VBox codes.abdullah.openjdm.ui.controller.Controller.root accessible: module codes.abdullah.openjdm does not "opens codes.abdullah.openjdm.ui.controller" to module javafx.fxml
+
+#Cause:
+
+
+#Solutions:
+add below to moudel-info.java
+
+opens codes.abdullah.openjdm.ui.controller to javafx.fxml;
 
 
